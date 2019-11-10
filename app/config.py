@@ -1,9 +1,5 @@
 import os
 
-# Spotify 0Auth 
-client_id = os.environ.get('CLIENT_ID')
-client_secret = os.environ.get('CLIENT_SECRET')
-redirect_uri = os.environ.get('REDIRECT_URI')
 
 class Config(object):
 
@@ -12,13 +8,18 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = '12345'
 
-    pw                        = os.environ.get('DB_PASSWORD', 'password')
-    user                      = os.environ.get('DB_USER', 'postgres')
-    url                       = os.environ.get('DB_HOST', 'localhost')
-    db                        = os.environ.get('DB_NAME', "postgres")
+    # Spotify 0Auth 
+    CLIENT_ID = os.environ.get('CLIENT_ID', None)
+    CLIENT_SECRET = os.environ.get('CLIENT_SECRET', None)
+    REDIRECT_URI = os.environ.get('REDIRECT_URI')
 
     # PostgresQL
-    SQLALCHEMY_DATABASE_URI = f'postgresql+psycopg2://{user}:{pw}@{url}/{db}'
+    # pw = os.environ.get('DB_PASSWORD', 'password')
+    # user = os.environ.get('DB_USER', 'postgres')
+    # url = os.environ.get('DB_HOST', 'localhost')
+    # db = os.environ.get('DB_NAME', "postgres")
+
+    # SQLALCHEMY_DATABASE_URI = f'postgresql+psycopg2://{user}:{pw}@{url}/{db}'
 
 
 class ProductionConfig(Config):
