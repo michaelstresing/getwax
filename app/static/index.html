@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GetWax</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header_container">Header Holder
+        <div class="prof_button">
+            <img src="" alt="Profile Image" class="img profile_image">
+        </div>
+    </div>
+    <div class="main_container">
+        <div class="button" id="back">
+                <button type="button">Back</button>
+        </div>
+        <div class="album">
+            <div class="album_name">Album Name</div>
+            <div class="album_artist">Artist</div>
+            <div class="album_image">
+                <img src="" alt="album art">
+            </div>
+            <div class="links">Links
+                <div id="app">
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+        <div class="button" id="next">
+            <button type="button">Next</button>
+        </div>
+    </div>
+<footer>
+    <div id="github_link">
+        Github
+    </div>  
+</footer>
+</body>
+<script src="app.js"></script>
+</html>

@@ -1,0 +1,65 @@
+.header_container {
+    background-color: lightseagreen;
+    display: flex;
+    height: 50px;
+}
+
+.main_container {
+    background-color: blue;
+    padding: 30px 5px;
+    width: 80%;
+    margin: auto;
+    padding: auto;
+    display: flex;
+}
+
+.album_image {
+    background-color: red;   
+    height: 250px;
+    width: 250px; 
+}
+
+.album_name {
+    background-color: limegreen;    
+    height: 36px;
+    margin: auto;
+    width: 200px;
+    text-align: center;
+    font-size: 36px;
+}  
+
+.album_artist {
+    background-color: greenyellow;    
+    height: 24px;
+    font-size: 24px;
+    margin: auto;
+    width: 200px;
+    text-align: center;
+}
+
+button {
+    height: 40px;
+    width: 40px;
+    border-radius: 100px;
+    background: hotpink;
+}
+
+.button {
+    margin: auto;
+}
+
+footer {
+    background-color: lightseagreen;
+    display: flex;
+    height: 50px;
+    padding-right: 5px;
+}
+
+#github_link {
+    background-color: rosybrown;
+    margin: auto;
+}
+
+.links {
+    background: salmon;
+}
