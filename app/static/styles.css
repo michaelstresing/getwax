@@ -2,21 +2,37 @@
     background-color: lightseagreen;
     display: flex;
     height: 50px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    direction: ltr;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.prof_wrapper{
+    border: black solid 1px;
+    margin-right: 5px;
 }
 
 .main_container {
     background-color: blue;
-    padding: 30px 5px;
-    width: 80%;
     margin: auto;
-    padding: auto;
     display: flex;
+    height: calc(100vh - 50px);
+    align-items: center;
+}
+
+.album {
+    margin: auto;
 }
 
 .album_image {
     background-color: red;   
     height: 250px;
-    width: 250px; 
+    width: 250px;
+    margin: 5px;
 }
 
 .album_name {
@@ -53,6 +69,10 @@ footer {
     display: flex;
     height: 50px;
     padding-right: 5px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 #github_link {

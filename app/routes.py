@@ -14,14 +14,42 @@ spotify = oauth.remote_app( "spotify",
                             authorize_url='https://accounts.spotify.com/authorize'
                             )
 
+# Spotify URLS
+SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
+SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
+SPOTIFY_API_BASE_URL = "https://api.spotify.com"
+API_VERSION = "v1"
+SPOTIFY_API_URL = "{}/{}".format(SPOTIFY_API_BASE_URL, API_VERSION)
+
+# Server-side Parameters
+CLIENT_SIDE_URL = "http://127.0.0.1"
+PORT = 8080
+REDIRECT_URI = "{}:{}/callback/q".format(CLIENT_SIDE_URL, PORT)
+SCOPE = "playlist-modify-public playlist-modify-private"
+STATE = ""
+SHOW_DIALOG_bool = True
+SHOW_DIALOG_str = str(SHOW_DIALOG_bool).lower()
+
+auth_query_parameters = {
+    "response_type": "code",
+    "redirect_uri": app.config['REDIRECT_IR'],
+    "scope": SCOPE,
+    # "state": STATE,
+    # "show_dialog": SHOW_DIALOG_str,
+    "client_id": app.config['CLIENT_ID']
+}
+
 @app.route('/')
 def index():
-    return redirect(url_for('login'))
+    url_args = "&".join(["{}={}".format(key, quote(val)) for key, val in auth_query_parameters.items()])
+    auth_url = "{}/?{}".format(SPOTIFY_AUTH_URL, url_args)
+    return redirect(auth_url)
 
 @app.route('/login')
 def login():
-    # if session['oauth_token']:
-    #     del session['oauth_token']
+
+    if spotify.authorize:
+        del spotify
 
     callback = url_for(
         'spotify_authorized',
@@ -33,6 +61,7 @@ def login():
 @app.route('/login/authorized')
 def spotify_authorized():
     resp = spotify.authorized_response()
+    print(resp)
     if resp is None:
         return f"Access denied: reason={request.args['error_reason']} error={request.args['error_description']}"
 
@@ -40,9 +69,8 @@ def spotify_authorized():
         return f"Access denied: {resp.message}"
 
     session['oauth_token'] = (resp['access_token'], '')
-    me = spotify.get('/v1/me')
-    # return f"{me}"
-    return f"Logged in as id={me.data['email']} name={me.data['display_name']} redirect={request.args.get['next']}"
+    me = spotify.get('/me')
+    return f"{resp}"
 
 @spotify.tokengetter
 def get_spotify_oauth_token():
