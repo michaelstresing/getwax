@@ -12,4 +12,8 @@ Vue.component('album-item', {
   "<div>"
 })
 
-Vue.component
+Vue.component('profile', {
+  props: ['profile'],
+  template:
+  "<div id='profile_image'> {{ p"
+})
