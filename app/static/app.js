@@ -11,3 +11,5 @@ Vue.component('album-item', {
   template: 
   "<div>"
 })
+
+Vue.component

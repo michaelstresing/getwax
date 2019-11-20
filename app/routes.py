@@ -16,7 +16,7 @@ SPOTIFY_API_URL = f"{SPOTIFY_API_BASE_URL}/{API_VERSION}"
 CLIENT_SIDE_URL = "http://127.0.0.1"
 PORT = 8080
 REDIRECT_URI = f"{CLIENT_SIDE_URL}:{PORT}/login/authorized"
-SCOPE = "playlist-modify-public"
+SCOPE = "user-read-email playlist-read-private user-follow-read user-library-read user-top-read playlist-modify-private playlist-modify-public"
 STATE = ""
 SHOW_DIALOG_bool = True
 SHOW_DIALOG_str = str(SHOW_DIALOG_bool).lower()
@@ -56,19 +56,39 @@ def callback():
 
     # Tokens are Returned to Application
     response_data = json.loads(post_request.text)
-    print(post_request)
+    # print(post_request)
     access_token = response_data["access_token"]
     refresh_token = response_data["refresh_token"]
     token_type = response_data["token_type"]
     expires_in = response_data["expires_in"]
 
     # Use the access token to access Spotify API
-    authorization_header = {"Authorization": "Bearer {}".format(access_token)}
+    authorization_header = {"Authorization": f"Bearer {access_token}"}
 
     # Get profile data
-    user_profile_api_endpoint = "{}/me".format(SPOTIFY_API_URL)
+    user_profile_api_endpoint = f"{SPOTIFY_API_URL}/me"
     profile_response = requests.get(user_profile_api_endpoint, headers=authorization_header)
     profile_data = json.loads(profile_response.text)
 
-    print(profile_data)
+    # Get library data
+    user_library_api_endpoint = f"{SPOTIFY_API_URL}/me/tracks"
+    library_response = requests.get(user_library_api_endpoint, headers=authorization_header)
+    library_data = json.loads(library_response.text)
+    
+    return authorization_header
+
+@app.route("/profile")
+def profile():
+    response_data = json.loads(requests.get(f"{CLIENT_SIDE_URL}:{PORT}/login/authorized"))
+
+    # Use the access token to access Spotify API
+    authorization_header = {"Authorization": f"Bearer {access_token}"}
+
+    print(callback)
+    print("HELLO")
+
+    user_profile_api_endpoint = f"{SPOTIFY_API_URL}/me"
+    profile_response = requests.get(user_profile_api_endpoint, headers=authorization_header)
+    profile_data = json.loads(profile_response.text)
+
     return profile_data
