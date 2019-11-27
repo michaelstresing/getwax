@@ -1,5 +1,18 @@
+:root {
+    --background: #16161a;
+    --headline: white;
+    --button: #7f5af0;
+    --paragraph: #94a1b2;
+    --button-text: white;
+    --illy-stroke: #16161a;
+    --illy-main: white; 
+    --illy-highlight: #7f5af0;
+    --secondary: #72757e;
+    --tertiary: #2cb67d;
+}
+
 .header_container {
-    background-color: lightseagreen;
+    background-color: var(--background);
     display: flex;
     height: 50px;
     position: fixed;
@@ -12,14 +25,17 @@
 }
 
 .prof_wrapper{
-    border: black solid 1px;
     margin-right: 5px;
+    background: var(--tertiary);
+    border-radius: 100px;
+    display: flex;
+    height: 85%;
 }
 
 .main_container {
-    background-color: blue;
-    margin: auto;
+    background: var(--background);
     display: flex;
+    width: 100%;
     height: calc(100vh - 50px);
     align-items: center;
 }
@@ -36,7 +52,7 @@
 }
 
 .album_name {
-    background-color: limegreen;    
+    color: var(--headline);    
     height: 36px;
     margin: auto;
     width: 200px;
@@ -45,7 +61,7 @@
 }  
 
 .album_artist {
-    background-color: greenyellow;    
+    color : var(--paragraph);    
     height: 24px;
     font-size: 24px;
     margin: auto;
@@ -57,7 +73,6 @@ button {
     height: 40px;
     width: 40px;
     border-radius: 100px;
-    background: hotpink;
 }
 
 .button {
@@ -65,7 +80,7 @@ button {
 }
 
 footer {
-    background-color: lightseagreen;
+    background-color: var(--secondary);
     display: flex;
     height: 50px;
     padding-right: 5px;
@@ -76,10 +91,17 @@ footer {
 }
 
 #github_link {
-    background-color: rosybrown;
     margin: auto;
+    padding: 5px;
+}
+
+.icon {
+    background: transparent;
+    height: 50px;
+    width: 50px;
 }
 
 .links {
     background: salmon;
 }
+

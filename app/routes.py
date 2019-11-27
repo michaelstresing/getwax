@@ -4,7 +4,6 @@ from flask import current_app as app
 from urllib.parse import quote
 import json
 import requests
-from static import index
 
 # Spotify URLS
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
@@ -33,7 +32,7 @@ auth_query_parameters = {
 @app.route('/')
 def index():
 
-    return render_template("static/index.html")
+    return render_template("index.html")
 
 @app.route('/auth')
 def auth():
@@ -66,31 +65,60 @@ def callback():
 
     # Use the access token to access Spotify API
     authorization_header = {"Authorization": f"Bearer {access_token}"}
+    
+    # store the access token in the session 
+    session['access_token'] = access_token
 
-    # Get profile data
+    return redirect('/')
+
+@app.route("/profile")
+def profile():
+
+    # Use the access token to access Spotify API
+    at = session["access_token"]
+    authorization_header = {"Authorization": f"Bearer {at}"}
+
+    # Access the Spotify API
     user_profile_api_endpoint = f"{SPOTIFY_API_URL}/me"
     profile_response = requests.get(user_profile_api_endpoint, headers=authorization_header)
-    profile_data = json.loads(profile_response.text)
+    profile_data_raw = json.loads(profile_response.text)
+
+    # Format and trim output
+    profile_data = {
+        "name": profile_data_raw["display_name"],
+        "email": profile_data_raw["email"],
+        "picture": profile_data_raw["images"][0]["url"]
+    }
+
+    return profile_data
+
+@app.route("/library")
+def library():
+
+    # Use the access token to access Spotify API
+    at = session["access_token"]
+    authorization_header = {"Authorization": f"Bearer {at}"}
 
     # Get library data
     user_library_api_endpoint = f"{SPOTIFY_API_URL}/me/tracks"
     library_response = requests.get(user_library_api_endpoint, headers=authorization_header)
-    library_data = json.loads(library_response.text)
-    
-    # store the access token in the session 
-    return access_token
+    library_data_raw = json.loads(library_response.text)
 
-@app.route("/profile")
-def profile():
-    response_request = requests.get(f"{CLIENT_SIDE_URL}:{PORT}/login/authorized")
-    access_token = response_request
-    # call from session -> check example repo. 
+    # Format and trim output
+    library_data = {
+        "items": [],
+        "itemcount": 0
+    }
 
-    # Use the access token to access Spotify API
-    authorization_header = {"Authorization": f"Bearer {access_token}"}
+    for item in library_data_raw["items"]:
 
-    user_profile_api_endpoint = f"{SPOTIFY_API_URL}/me"
-    profile_response = requests.get(user_profile_api_endpoint, headers=authorization_header)
-    profile_data = json.loads(profile_response.text)
+        id = {}
+        id["artist"] = item["track"]["album"]["artists"][0]["name"]
+        id["album"] = item["track"]["album"]["name"]
+        id["song"] = item["track"]["name"]
+        id["image"] = item["track"]["album"]["images"][0]["url"]
 
-    return profile_data
+        library_data["items"].append(id)
+        library_data["itemcount"] += 1
+
+    return library_data

@@ -4,15 +4,16 @@
   <meta charset="utf-8">
   <title>GetWax</title>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../static/styles.css">
+  <link rel="shortcut icon" href="">
 </head>
-<body>
+<div id="app" style="margin:0;padding:0">
     <div class="header_container">
         <div class="prof_wrapper">
             <div class="prof_button">
-                <img src="" alt="Profile Image" class="img profile_image">
+                <img id="prof_img" src="{{ profileimg }}" alt="Profile Image" class="img profile_image">
             </div>
-            <div class="prof_name">NAME</div>
+            <div id="prof_name">{{ name }}</div>
         </div>
     </div>
     <div class="main_container">
@@ -20,15 +21,12 @@
                 <button type="button">Back</button>
         </div>
         <div class="album">
-            <div class="album_name">Album Name</div>
+            <div class="album_name">Album</div>
             <div class="album_artist">Artist</div>
             <div class="album_image">
                 <img src="" alt="album art">
             </div>
             <div class="links">Links
-                <div id="app">
-                    {{ message }}
-                </div>
             </div>
         </div>
         <div class="button" id="next">
@@ -37,9 +35,11 @@
     </div>
 <footer>
     <div id="github_link">
-        <a href="https://github.com/michaelstresing/getwax">Github</a>
+        <a href="https://github.com/michaelstresing/getwax">
+            <img class="icon" src="../static/github.png" alt="Github">
+        </a>
     </div>  
 </footer>
-</body>
-<script src="app.js"></script>
+</div>
+<script src="../static/app.js"></script>
 </html>
