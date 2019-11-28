@@ -7,13 +7,15 @@ new Vue({
   data () {
     return {
       name: null
-    }
-  },
-    fetch(profurl)
-    .then(response => (this.name = response.json.name))
-    .then(console.log(response))
-    .then(console.log(response.name))
-})
+    }}
+  })
+
+//   },
+//     fetch(profurl)
+//     then(response => (this.name = response.json.name))
+//     .then(console.log(response))
+//     .then(console.log(response.name))
+// })
 
 // Vue.component('album-item', {
 //   props: ['album'],

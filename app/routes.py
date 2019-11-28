@@ -4,6 +4,7 @@ from flask import current_app as app
 from urllib.parse import quote
 import json
 import requests
+import discogs_client
 
 # Spotify URLS
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
@@ -11,6 +12,9 @@ SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 SPOTIFY_API_BASE_URL = "https://api.spotify.com"
 API_VERSION = "v1"
 SPOTIFY_API_URL = f"{SPOTIFY_API_BASE_URL}/{API_VERSION}"
+
+# Discogs URLS
+
 
 # Server-side Parameters
 CLIENT_SIDE_URL = "http://127.0.0.1"
@@ -122,3 +126,9 @@ def library():
         library_data["itemcount"] += 1
 
     return library_data
+
+d = discogs_client.Client('ExampleApplication/0.1')
+d.set_consumer_key('key-here', 'secret-here')
+
+@app.route("/discogs")
+def discogs_auth(): 

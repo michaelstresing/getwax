@@ -8,10 +8,14 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = '12345'
 
-    # Spotify 0Auth 
+    # Spotify OAuth 
     CLIENT_ID = os.environ.get('CLIENT_ID', None)
     CLIENT_SECRET = os.environ.get('CLIENT_SECRET', None)
     REDIRECT_URI = os.environ.get('REDIRECT_URI')
+
+    # Discogs OAuth
+    D_KEY = os.environ.get("DISCOGS_KEY", None)
+    D_SECRET = os.environ.get("DISCOGS_SECRET", None)
 
     # PostgresQL
     # pw = os.environ.get('DB_PASSWORD', 'password')
