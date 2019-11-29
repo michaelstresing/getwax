@@ -130,5 +130,5 @@ def library():
 d = discogs_client.Client('ExampleApplication/0.1')
 d.set_consumer_key('key-here', 'secret-here')
 
-@app.route("/discogs")
-def discogs_auth(): 
+# @app.route("/discogs")
+# def discogs_auth(): 
