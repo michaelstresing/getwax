@@ -10,6 +10,7 @@
   <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <link rel="stylesheet" href="../static/styles.css">
+  <link rel="icon" href="../static/favicon.ico"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
@@ -19,65 +20,64 @@
         <v-content>
             <v-app-bar color="blue">
                 <v-toolbar-title>GetWax</v-toolbar-title>
-                <v-btn color="green"></v-btn>
+                <v-spacer></v-spacer>
+                <v-btn rounded
+                        max-width="300"
+                        min-width="80"
+                        v-on:click="getprofile()" 
+                        color="green"
+                        >
+                    <v-avatar size=36 color="green">
+                        <img :src="`${picture}`">                        
+                    </v-avatar>
+                    <p v-bind:name="name">[[ name ]]</p>
+                </v-btn>
             </v-app-bar>
-            <v-container>
-                    <!-- <div class="header_container">
-                        <div class="prof_wrapper">
-                            <div class="prof_button">
-                                <v-avatar size=36 color="green" class="prof_image">
-                                    <v-icon dark>mdi-account-circle</v-icon>
-                                </v-avatar>
-                            </div>
-                            <div id="prof_name">{{ name }}</div>
-                        </div>
-                    </div> -->
-                    <div class="main_container">
-                        <div class="button" id="back">
-                            <button type="button">Back</button>
-                        </div>
-                        <div class="album">
-                            <div class="album_name">Album</div>
-                            <div class="album_artist">Artist</div>
-                            <div class="album_image">
-                                <img src="" alt="album art">
-                            </div>
-                            <div class="links">Links
-                            </div>
-                        </div>
-                        <div class="button" id="next">
-                            <button type="button">Next</button>
-                        </div>
-                    </div>
-                    <!-- <footer>
-                    <div id="github_link">
-                        <a href="https://github.com/michaelstresing/getwax">
-                            <img class="icon" src="../static/github.png" alt="Github">
-                        </a>
-                    </div>  
-                    </footer> -->
-                    <v-footer
-                    dark
-                    padless
-                  >
-                    <v-card
-                      class="flex"
-                      flat
-                      tile
-                    >
-                      <v-card-title>
-                        <v-spacer></v-spacer>
-                        <v-icon>fas fa-github></v-icon>
-                      </v-card-title>
-                      <v-card-text class="py-2 white--text text-center">
-                        {{ new Date().getFullYear() }} — <strong>GetWax</strong>
-                      </v-card-text>
+            <v-container dark>
+                <v-btn icon>
+                    <v-icon color="white" large>fas fa-arrow-left</v-icon>
+                </v-btn>
+                <v-card elevation="3" color="white" id="active_album">
+                    <v-card-text>
+                        <p class="display-1 text--primary">
+                            ALBUM
+                        </p>
+                        <p class="text--primary">
+                            ARTIST
+                        </p>
+                        <img alt="album art">
+                    </v-card-text>
+                </v-card>
+                <v-card color="white" id="active_actions">
+                        <v-card-text>
+                            <p class="display-1 text--primary">
+                                LINKS
+                            </p>
+                            <p class="text--primary">
+                                coming
+                            </p>
+                        </v-card-text>
+                    </v-card> 
+                <v-btn icon>
+                    <v-icon color="white" large>fas fa-arrow-right</v-icon>
+                </v-btn>
+                </v-container>
+                <v-footer dark padless>
+                    <v-card class="flex">
+                        <v-card-title>
+                            <v-spacer></v-spacer>
+                            <v-btn icon href="https://github.com/michaelstresing/getwax">
+                                <v-icon large>fab fa-github</v-icon>
+                            </v-btn>
+                        </v-card-title>
+                        <v-card-text class="py-2 white--text text-center">
+                        [[ date ]] — <strong>GetWax</strong>
+                        </v-card-text>
                     </v-card>
-                  </v-footer>
-                    </v-container>
-                </v-content>
-            </v-app> 
-        </div>
+                </v-footer>
+            </v-content>
+        </v-app> 
+    </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
