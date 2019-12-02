@@ -18,26 +18,26 @@
 <div id="app">
     <v-app>
         <v-content>
-            <v-app-bar color="blue">
+            <v-app-bar color="secondary" elevation=0>
                 <v-toolbar-title>GetWax</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn rounded
-                        max-width="300"
-                        min-width="80"
                         v-on:click="getprofile()" 
-                        color="green"
+                        color="accent"
+                        max-width=500
                         >
-                    <v-avatar size=36 color="green">
+                    <v-avatar size=36>
                         <img :src="`${picture}`">                        
                     </v-avatar>
                     <p v-bind:name="name">[[ name ]]</p>
                 </v-btn>
             </v-app-bar>
-            <v-container dark>
+            <v-container flex-direction:row fluid fill-height fill-width align-center secondary>
+                <v-spacer></v-spacer>
                 <v-btn icon>
-                    <v-icon color="white" large>fas fa-arrow-left</v-icon>
+                    <v-icon color="accent" large>fas fa-arrow-left</v-icon>
                 </v-btn>
-                <v-card elevation="3" color="white" id="active_album">
+                <v-card elevation="3" color="white" width="25%" id="active_album">
                     <v-card-text>
                         <p class="display-1 text--primary">
                             ALBUM
@@ -48,6 +48,9 @@
                         <img alt="album art">
                     </v-card-text>
                 </v-card>
+                <v-btn icon>
+                        <v-icon color="accent" large>fas fa-arrow-right</v-icon>
+                </v-btn>
                 <v-card color="white" id="active_actions">
                         <v-card-text>
                             <p class="display-1 text--primary">
@@ -58,22 +61,18 @@
                             </p>
                         </v-card-text>
                     </v-card> 
-                <v-btn icon>
-                    <v-icon color="white" large>fas fa-arrow-right</v-icon>
-                </v-btn>
+                <v-spacer></v-spacer>
                 </v-container>
-                <v-footer dark padless>
-                    <v-card class="flex">
-                        <v-card-title>
-                            <v-spacer></v-spacer>
-                            <v-btn icon href="https://github.com/michaelstresing/getwax">
-                                <v-icon large>fab fa-github</v-icon>
-                            </v-btn>
-                        </v-card-title>
-                        <v-card-text class="py-2 white--text text-center">
+                <v-footer absolute dark padless class="flex" color="secondary-darken">
+                    <v-spacer></v-spacer>
+                    <p class="py-2 white--text center">
                         [[ date ]] — <strong>GetWax</strong>
-                        </v-card-text>
-                    </v-card>
+                    </p>
+                    <v-spacer></v-spacer>
+                    <v-btn icon href="https://github.com/michaelstresing/getwax" pa-2>
+                        <v-icon large>fab fa-github</v-icon>
+                    <v-spacer></v-spacer>
+                    </v-btn>
                 </v-footer>
             </v-content>
         </v-app> 
