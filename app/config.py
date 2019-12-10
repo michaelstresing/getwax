@@ -18,12 +18,12 @@ class Config(object):
     D_SECRET = os.environ.get("DISCOGS_SECRET", None)
 
     # PostgresQL
-    # pw = os.environ.get('DB_PASSWORD', 'password')
-    # user = os.environ.get('DB_USER', 'postgres')
-    # url = os.environ.get('DB_HOST', 'localhost')
-    # db = os.environ.get('DB_NAME', "postgres")
+    pw = os.environ.get('DB_PASSWORD', 'password')
+    user = os.environ.get('DB_USER', 'postgres')
+    url = os.environ.get('DB_HOST', 'localhost')
+    db = os.environ.get('DB_NAME', "postgres")
 
-    # SQLALCHEMY_DATABASE_URI = f'postgresql+psycopg2://{user}:{pw}@{url}/{db}'
+    SQLALCHEMY_DATABASE_URI = f'postgresql+psycopg2://{user}:{pw}@{url}/{db}'
 
 
 class ProductionConfig(Config):
